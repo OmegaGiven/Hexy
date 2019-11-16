@@ -4,6 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -40,7 +41,7 @@ public class Main extends Application {
         });
 
 
-        Group leftpane = new Group(sizeInput, enteredText, defaultSize);
+        VBox leftpane = new VBox(sizeInput, enteredText, defaultSize);
         pane.setLeft(leftpane);
 
 
