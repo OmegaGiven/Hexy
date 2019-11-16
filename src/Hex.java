@@ -46,10 +46,7 @@ public class Hex {
 
     public void change(Hexagon hex) {
 
-//        System.out.println("ADDDD");
-//        System.out.println(hex.index + " Hello " + size);
         if(hex.index < size) {
-//            System.out.println(graph.get(hex.index).getPlayer());
             if (graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("up");
                 addUp(graph.get(hex.index));

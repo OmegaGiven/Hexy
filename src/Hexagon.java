@@ -1,5 +1,4 @@
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Hexagon implements Comparable {
     private Integer player = 0;

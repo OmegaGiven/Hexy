@@ -50,7 +50,7 @@ public class Main extends Application {
                         im.setDisable(true);
                         hexagon.setPlayer(1);
                         hexy.change(hexagon);
-                        if(count > 19 && hexy.winner()) {
+                        if(count > (2 * size - 2) && hexy.winner()) {
                             System.out.println("Red is winner");
                         }
                     }
@@ -60,7 +60,7 @@ public class Main extends Application {
                         im.setDisable(true);
                         hexagon.setPlayer(2);
                         hexy.change(hexagon);
-                        if(count > 19 && hexy.winner()) {
+                        if(count > (2 * size - 2) && hexy.winner()) {
                             System.out.println("Blue is winner");
                         }
 
@@ -116,7 +116,6 @@ public class Main extends Application {
         stage.setTitle("Hexy");
         Scene scene = new Scene(backdrop, 500, 500);
         stage.setScene(scene);
-        //stage.setMaximized(true);
         stage.show();
     }
     public static void main(String[] args) {
