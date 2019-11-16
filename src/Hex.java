@@ -100,11 +100,7 @@ public class Hex {
     }
 
 
-
-
-
-
-
+    // this is checking the hexagon border lists to see if they are in the same groups.
     public boolean winner() {
         for (Hexagon up : up) {
             for(Hexagon down : down) {
