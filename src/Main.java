@@ -14,47 +14,47 @@ import javafx.stage.Stage;
 public class Main extends Application {
     //  white:  https://i.imgur.com/xe4LYx0.png
     //  red:   https://i.imgur.com/62DSuZj.png
-    // blue:  https://i.imgur.com/Su3rhhx.png
+    //  blue:  https://i.imgur.com/Su3rhhx.png
 
     private boolean redPlayer = true;
     private int count = 0;
     private Hex hex;
 
-
+    /***
+     * Prints the center part of the board and calls the logic of calculating the win based on the input of hexagons.
+     * @param size of the board
+     * @param game game pane so it can be altered.
+     * @return the inside pane to be added to the main stage to display graphically.
+     */
     public Pane PrintBoard(int size, BorderPane game){
+        Pane pane = new Pane();
 
+        //texts that will be used later for the top to display whose turn.
         Text player1turn = new Text("Player 1's turn (red)");
         player1turn.setFill(Color.RED);
         Text player2turn = new Text("Player 2's turn (blue)");
         player2turn.setFill(Color.BLUE);
 
-        Pane pane = new Pane();
-        //this will be used to create the initial board
-        int offset = 0;
 
-
-//        Image image = new Image("https://i.imgur.com/xe4LYx0.png");
-
-
-        Image blank = new Image("https://i.imgur.com/xe4LYx0.png");
-
-
+        //creates out line of the board colors so players know their sides.
         Line topbottom = new Line(10, 15, size*35, 15);
         topbottom.setStrokeWidth(10);
         topbottom.setStroke(Color.RED);
         Line topbottom2 = new Line(10+ 15 * size, size * 30, 10+ 15 * size + size*35, size * 30 );
         topbottom2.setStrokeWidth(10);
         topbottom2.setStroke(Color.RED);
-
-
         Line leftright = new Line(10, 15, 10+ 15 * size , size * 30);
         leftright.setStrokeWidth(10);
         leftright.setStroke(Color.BLUE);
         Line leftright2 = new Line(size*35, 15, 10+ 15 * size + size*35, size * 30 );
         leftright2.setStrokeWidth(10);
         leftright2.setStroke(Color.BLUE);
-
         pane.getChildren().addAll(leftright,leftright2,topbottom,topbottom2);
+
+
+        //creates the hexagon grid
+        Image blank = new Image("https://i.imgur.com/xe4LYx0.png");
+        int offset = 0;
         for (int y = 0; y < size; y++){
             for (int x = 0; x < size; x++){
                 Hexagon hexagon = new Hexagon(blank);
@@ -66,11 +66,13 @@ public class Main extends Application {
                 im.setY(y*25);
                 im.setX(x*30+offset);
 
+
                 hexagon.index = size * y + x;
                 hex.addBlank(hexagon);
 
                 game.setTop(player1turn);
 
+                //event for click action and calls logic for win.
                 im.setOnMouseClicked(event -> {
                     count++;
                     if(redPlayer) {
@@ -94,7 +96,6 @@ public class Main extends Application {
                         im.setDisable(true);
                         hexagon.setPlayer(2);
                         hex.change(hexagon);
-
                         if(count > (2 * size - 2) && hex.winner()) {
                             Text winner = new Text("Blue is the Winner!!!");
                             winner.setFill(Color.BLUE);
@@ -111,24 +112,18 @@ public class Main extends Application {
         return pane;
     }
 
-
+    /***
+     * The main method in displaying the graphics of the game.
+     * @param stage
+     */
     public void start(Stage stage){
         Pane backdrop = new Pane();
-//        BackgroundImage backgroundImage = new BackgroundImage(new Image("https://scx1.b-cdn.net/csz/news/800/2015/computermode.png"), BackgroundRepeat.NO_REPEAT,
-//                BackgroundRepeat.NO_REPEAT,
-//                BackgroundPosition.DEFAULT,
-//                BackgroundSize.DEFAULT);
-//        Background background = new Background(backgroundImage);
         BorderPane pane = new BorderPane();
-//        backdrop.setBackground(background);
         backdrop.getChildren().add(pane);
         Pane blank = new Pane();
 
-
-
+        //buttons for determining size
         Text request = new Text("Please enter a integer size");
-
-
         Button defaultSize = new Button("Default board size 11");
         defaultSize.setOnMouseClicked(action -> {
             hex = new Hex(11);
@@ -136,7 +131,6 @@ public class Main extends Application {
             defaultSize.setDisable(true);
             pane.setLeft(blank);
         });
-
         TextField sizeInput = new TextField();
         Button enteredText = new Button("Enter");
         enteredText.setOnMouseClicked(action -> {
@@ -146,13 +140,23 @@ public class Main extends Application {
             enteredText.setDisable(true);
             pane.setLeft(blank);
         });
+
+
+        //creation of right instruction section.
+        Text Instructions = new Text(
+          "Instructions:" + "\n" +
+          "Players will alternate clicking hexagons on unoccupied hexagons." + "\n" +
+          "The Goal is to link their their colors sides in an unbroken chain. " + "\n" +
+          "One player must win; there are no draws."
+        );
+        pane.setRight(Instructions);
         
         VBox leftPane = new VBox(request, sizeInput, enteredText, defaultSize);
         pane.setLeft(leftPane);
-        stage.setMaximized(true);
-        stage.setTitle("Hexy");
         Scene scene = new Scene(backdrop, 500, 500);
         stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.setTitle("Hexy");
         stage.show();
     }
     public static void main(String[] args) {
