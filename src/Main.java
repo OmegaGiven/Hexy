@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -16,10 +17,11 @@ public class Main extends Application {
 
     public void start(Stage stage){
         BorderPane pane = new BorderPane();
-        
-        Text player1turn = new Text("Player 1's turn (red)");
-        Text player2turn = new Text("Player 2's turn (blue)");
 
+        Text player1turn = new Text("Player 1's turn (red)");
+        player1turn.setFill(Color.RED);
+        Text player2turn = new Text("Player 2's turn (blue)");
+        player2turn.setFill(Color.BLUE);
 
 
 
