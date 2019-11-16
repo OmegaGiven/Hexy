@@ -18,7 +18,7 @@ public class Main extends Application {
     //  red:   https://i.imgur.com/62DSuZj.png
     // blue:  https://i.imgur.com/Su3rhhx.png
     ArrayList hexGrid;
-
+    boolean count = true;
     public Pane PrintBoard(int size){
         Pane pane = new Pane();
         //this will be used to create the initial board
@@ -35,7 +35,18 @@ public class Main extends Application {
                 hex.setX(x*30+offset);
 
                 hex.setOnMouseClicked(event -> {
-//                    hex.setIma;
+                    if(count) {
+                        hex.setImage(new Image("https://i.imgur.com/62DSuZj.png"));
+                        count = false;
+                        hex.setDisable(true);
+                    }
+                    else {
+                        hex.setImage(new Image("https://i.imgur.com/Su3rhhx.png"));
+                        count = true;
+                        hex.setDisable(true);
+
+
+                    }
                 });
             }
             offset += 15;
@@ -56,24 +67,25 @@ public class Main extends Application {
 
         Text request = new Text("Please Enter a Integer size");
 
-        Hex hex = new Hex();
 
         Button defaultSize = new Button("Default board size 11");
         defaultSize.setOnMouseClicked(action -> {
-           hex.size = 11;
-
+            Hex hex = new Hex();
+            pane.setCenter(PrintBoard(11));
+            defaultSize.setDisable(true);
         });
 
         TextField sizeInput = new TextField();
         Button enteredText = new Button("Enter");
         enteredText.setOnMouseClicked(action -> {
-            hex.size = Integer.parseInt(sizeInput.getText());
+            Hex hex = new Hex(Integer.parseInt(sizeInput.getText()));
+            pane.setCenter(PrintBoard(Integer.parseInt(sizeInput.getText())));
+            enteredText.setDisable(true);
         });
         
         VBox leftPane = new VBox(sizeInput, enteredText, defaultSize);
         pane.setLeft(leftPane);
 
-        pane.setCenter(PrintBoard(hex.size));
 
 
 
