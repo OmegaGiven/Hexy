@@ -1,18 +1,12 @@
 Hex
 -------------------
-
-Vicky Allan's suggested;
-    change the size of the grid
-    
+Uses JavaFX for Graphics
+Uses UnionFind algorithm connecting paths of groups to other node groups.    
 
 Contributors
 ---------------------
 
-Sarah;
-
-James;
-
-Nathan;
+Sarah, James, Nathan
 
 
 Example of startup
