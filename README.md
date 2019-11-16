@@ -1,6 +1,5 @@
-
-    Hex
-------------
+Hex
+-------------------
 
 Vicky Allan's suggested;
     change the size of the grid
@@ -17,12 +16,12 @@ Nathan;
 Example of startup
 ----------------------
 
-*opens up on black screen. with a type in input are for the size wanted
+* opens up on black screen. with a type in input are for the size wanted
 or a default size button 11x11
 
-*after startup calls constructor of the game board to display it graphically.
+* after startup calls constructor of the game board to display it graphically.
 along the top will display whose turn it is and what color they are so there is no confusion.
 
 * players take turn playing the game.
 
-*each turn the game will calculate using union find to see if there is a winner based on groupings.
+* each turn the game will calculate using union find to see if there is a winner based on groupings.
