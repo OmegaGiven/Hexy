@@ -4,14 +4,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 
 public class Main extends Application {
     //  white:  https://i.imgur.com/xe4LYx0.png
@@ -56,7 +53,15 @@ public class Main extends Application {
 
 
     public void start(Stage stage){
+        Pane backdrop = new Pane();
+        BackgroundImage backgroundImage = new BackgroundImage(new Image("https://scx1.b-cdn.net/csz/news/800/2015/computermode.png"), BackgroundRepeat.NO_REPEAT,
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
+        Background background = new Background(backgroundImage);
         BorderPane pane = new BorderPane();
+        backdrop.setBackground(background);
+        backdrop.getChildren().add(pane);
         Pane blank = new Pane();
 
         Text player1turn = new Text("Player 1's turn (red)");
@@ -88,7 +93,7 @@ public class Main extends Application {
         pane.setLeft(leftPane);
 
         stage.setTitle("Hexy");
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(backdrop);
         stage.setScene(scene);
         stage.setMaximized(true);
         stage.show();
