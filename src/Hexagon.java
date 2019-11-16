@@ -5,7 +5,6 @@ public class Hexagon implements Comparable {
     private Integer player = 0;
     private Integer value = -1;
     int index;
-    ImageView image;
 
     public void setPlayer(Integer player) {
         this.player = player;

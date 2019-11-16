@@ -9,7 +9,7 @@ public class Hex {
     private ArrayList<Hexagon> right = new ArrayList<>();
     private UnionFind unionFind = new UnionFind(121);
 
-    int[] neighbors = {-11, -10, -1, 1, 10, 11};
+    int[] neighbors = {-size, -size + 1, -1, 1, size - 1, size};
 
 
 
@@ -42,10 +42,26 @@ public class Hex {
 
 
 
-    public void add(Hexagon node) {
+    public void add(Integer index) {
+        if(index < size)
+            if(graph.get(index).getPlayer() == 1) {
+                addUp(graph.get(index));
+            }
+        else if(index > size * size - size - 1)
+            if(graph.get(index).getPlayer() == 1) {
+                addDown(graph.get(index));
+            }
+        else if(index % size == 0)
+            if(graph.get(index).getPlayer() == 2) {
+                addLeft(graph.get(index));
+            }
+        else if(index % size == size - 1)
+            if(graph.get(index).getPlayer() == 2) {
+                addRight(graph.get(index));
+            }
         for (int i : neighbors) {
-            if(node.getPlayer().equals(graph.get(node.index + i).getValue())) {
-
+            if(graph.get(index).getPlayer().equals(graph.get(index + i).getPlayer())) {
+                unionFind.union(index, graph.get(index + i).index);
             }
         }
     }
