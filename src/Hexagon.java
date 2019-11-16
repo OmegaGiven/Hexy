@@ -38,6 +38,8 @@ public class Hexagon implements Comparable {
         return value.equals(other.value);
     }
 
+
+    // just compares two Hexagon values and returns -1 if less than, 0 if equal and 1 if greater than.
     private int compare(Hexagon other) {
         if(value < other.value) {
             return -1;
