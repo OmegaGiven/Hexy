@@ -1,22 +1,35 @@
 import java.util.ArrayList;
 
 public class Hex {
-    private int size = 1000;
-    private ArrayList<Hexagon> graph = new ArrayList<>();
-    private ArrayList<Hexagon> up = new ArrayList<>();
-    private ArrayList<Hexagon> down = new ArrayList<>();
-    private ArrayList<Hexagon> left = new ArrayList<>();
-    private ArrayList<Hexagon> right = new ArrayList<>();
-    private UnionFind unionFind = new UnionFind(getSize() * getSize());
+    private int size;
+    private ArrayList<Hexagon> graph ;
+    private ArrayList<Hexagon> up;
+    private ArrayList<Hexagon> down;
+    private ArrayList<Hexagon> left;
+    private ArrayList<Hexagon> right;
+    private UnionFind unionFind;
 
 
 
 
     public Hex(){
-        this.size = getSize();
+        this.size = 11;
+        this.graph = new ArrayList<>();
+        this.up = new ArrayList<>();
+        this.down = new ArrayList<>();
+        this.left = new ArrayList<>();
+        this.right = new ArrayList<>();
+        this.unionFind = new UnionFind(getSize() * getSize());
+
     }
     public Hex(int size){
         this.size = size;
+        this.graph = new ArrayList<>();
+        this.up = new ArrayList<>();
+        this.down = new ArrayList<>();
+        this.left = new ArrayList<>();
+        this.right = new ArrayList<>();
+        this.unionFind = new UnionFind(getSize() * getSize());
     }
     public int getSize() {
         return size;

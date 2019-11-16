@@ -1,13 +1,17 @@
 import javafx.scene.image.Image;
 
 public class Hexagon implements Comparable {
-    private Integer player = 0;
-    private Integer value = -1;
+    private Integer player;
+    private Integer value;
     int index;
     Image image;
 
     Hexagon(Image image) {
         this.image = image;
+        this.player = 0;
+        this.value = -1;
+        this.index = 0;
+
     }
 
     public void setPlayer(Integer player) {

@@ -15,9 +15,9 @@ public class Main extends Application {
     //  red:   https://i.imgur.com/62DSuZj.png
     // blue:  https://i.imgur.com/Su3rhhx.png
 
-    boolean redPlayer = true;
-    int count = 0;
-    Hex hex = new Hex(11);
+    private boolean redPlayer = true;
+    private int count = 0;
+    private Hex hex;
 
 
     public Pane PrintBoard(int size, BorderPane game){
