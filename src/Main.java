@@ -29,30 +29,22 @@ public class Main extends Application {
 
         Text request = new Text("Please Enter a Integer size");
 
-        int size = 0;
+        Hex hex = new Hex();
 
         Button defaultSize = new Button("Default board size 11");
         defaultSize.setOnMouseClicked(action -> {
-           size = 11;
+           hex.size = 11;
 
         });
 
         TextField sizeInput = new TextField();
         Button enteredText = new Button("Enter");
         enteredText.setOnMouseClicked(action -> {
-            size = Integer.parseInt(sizeInput.getText());
-            System.out.println(size);
+            hex.size = Integer.parseInt(sizeInput.getText());
         });
-
-
+        
         VBox leftPane = new VBox(sizeInput, enteredText, defaultSize);
         pane.setLeft(leftPane);
-
-
-
-
-
-
 
         stage.setTitle("Hexy");
         Scene scene = new Scene(pane);
