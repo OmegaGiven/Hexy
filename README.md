@@ -3,8 +3,10 @@ Hex
 
 Vicky Allan's suggested;
     change the size of the grid
+    
 
-
+Contributors
+---------------------
 
 Sarah;
 
