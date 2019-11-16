@@ -42,8 +42,8 @@ public class Main extends Application {
         });
 
 
-        VBox leftpane = new VBox(sizeInput, enteredText, defaultSize);
-        pane.setLeft(leftpane);
+        VBox leftPane = new VBox(sizeInput, enteredText, defaultSize);
+        pane.setLeft(leftPane);
 
 
 

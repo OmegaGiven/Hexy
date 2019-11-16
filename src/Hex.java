@@ -16,4 +16,9 @@ public class Hex {
     public ArrayList getGraph() {
         return graph;
     }
+
+//    public boolean winner() {
+//
+//    }
+
 }
