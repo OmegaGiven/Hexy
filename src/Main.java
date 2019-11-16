@@ -2,6 +2,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -22,18 +23,22 @@ public class Main extends Application {
         Pane pane = new Pane();
         //this will be used to create the initial board
         int offset = 0;
+        Image image = new Image("https://i.imgur.com/xe4LYx0.png");
         for (int y = 0; y <= size; y++){
             for (int x = 0; x <= size; x++){
-                ImageView hex = new ImageView("https://i.imgur.com/xe4LYx0.png");
+                ImageView hex = new ImageView(image);
                 hex.setFitHeight(100);
                 hex.setFitWidth(100);
                 pane.getChildren().add(hex);
                 hex.setRotate(90);
-                hex.setY(y*30);
+                hex.setY(y*25);
                 hex.setX(x*30+offset);
 
+                hex.setOnMouseClicked(event -> {
+//                    hex.setIma;
+                });
             }
-            offset += 50;
+            offset += 15;
         }
         return pane;
     }
