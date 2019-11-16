@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 
 public class Hex {
-    private int size;
+    private int size = 1000;
     private ArrayList<Hexagon> graph = new ArrayList<>();
     private ArrayList<Hexagon> up = new ArrayList<>();
     private ArrayList<Hexagon> down = new ArrayList<>();
     private ArrayList<Hexagon> left = new ArrayList<>();
     private ArrayList<Hexagon> right = new ArrayList<>();
-    private UnionFind unionFind = new UnionFind(121);
+    private UnionFind unionFind = new UnionFind(getSize() * getSize());
 
 
 
 
     public Hex(){
-        this.size = 11;
+        this.size = getSize();
     }
     public Hex(int size){
         this.size = size;
@@ -48,34 +48,32 @@ public class Hex {
 
         if(hex.index < size) {
             if (graph.get(hex.index).getPlayer() == 1) {
-                System.out.println("up");
                 addUp(graph.get(hex.index));
             }
         }
-        else if(hex.index >= size * size - size - 1) {
+        else if(hex.index >= (size * size) - (size )) {
             if (graph.get(hex.index).getPlayer() == 1) {
-                System.out.println("down");
                 addDown(graph.get(hex.index));
             }
         }
         else if(hex.index % size == 0) {
             if (graph.get(hex.index).getPlayer() == 2) {
-                System.out.println("left");
                 addLeft(graph.get(hex.index));
             }
         }
         else if(hex.index % size == size - 1) {
             if (graph.get(hex.index).getPlayer() == 2) {
-                System.out.println("right");
                 addRight(graph.get(hex.index));
             }
         }
         int[] neighbors = {-size, -size + 1, -1, 1, size - 1, size};
 
         for (int i : neighbors) {
-            if(hex.index + i >= 0 && hex.index + i < (size * size) &&
+            if(hex.index + i >= 0 && hex.index + i < size * size &&
+                    hex.index + i < graph.size() &&
                     graph.get(hex.index).getPlayer() != 0 &&
-                    graph.get(hex.index).getPlayer().equals(graph.get(hex.index + i).getPlayer())) {
+                    graph.get(hex.index).getPlayer().equals(
+                            graph.get(hex.index + i).getPlayer())) {
                 unionFind.union(hex, graph.get(hex.index + i));
             }
         }

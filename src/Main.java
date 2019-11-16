@@ -17,6 +17,9 @@ public class Main extends Application {
 
     boolean redPlayer = true;
     int count = 0;
+    Hex hex = new Hex(11);
+
+
     public Pane PrintBoard(int size, BorderPane game){
 
         Text player1turn = new Text("Player 1's turn (red)");
@@ -32,7 +35,6 @@ public class Main extends Application {
 //        Image image = new Image("https://i.imgur.com/xe4LYx0.png");
 
 
-        Hex hexy = new Hex();
         Image blank = new Image("https://i.imgur.com/xe4LYx0.png");
         for (int y = 0; y < size; y++){
             for (int x = 0; x < size; x++){
@@ -46,7 +48,7 @@ public class Main extends Application {
                 im.setX(x*30+offset);
 
                 hexagon.index = size * y + x;
-                hexy.addBlank(hexagon);
+                hex.addBlank(hexagon);
 
                 game.setTop(player1turn);
 
@@ -58,12 +60,11 @@ public class Main extends Application {
                         redPlayer = false;
                         im.setDisable(true);
                         hexagon.setPlayer(1);
-                        hexy.change(hexagon);
-                        if(count > (2 * size - 2) && hexy.winner()) {
+                        hex.change(hexagon);
+                        if(count > (2 * size - 2) && hex.winner()) {
                             Text winner = new Text("Red is the Winner!!!");
                             winner.setFill(Color.RED);
                             game.setBottom(winner);
-                            System.out.println("Red is winner");
                             game.setDisable(true);
                         }
                     }
@@ -73,9 +74,9 @@ public class Main extends Application {
                         redPlayer = true;
                         im.setDisable(true);
                         hexagon.setPlayer(2);
-                        hexy.change(hexagon);
-                        if(count > (2 * size - 2) && hexy.winner()) {
-                            System.out.println("Blue is winner");
+                        hex.change(hexagon);
+
+                        if(count > (2 * size - 2) && hex.winner()) {
                             Text winner = new Text("Blue is the Winner!!!");
                             winner.setFill(Color.BLUE);
                             game.setBottom(winner);
@@ -110,7 +111,7 @@ public class Main extends Application {
 
         Button defaultSize = new Button("Default board size 11");
         defaultSize.setOnMouseClicked(action -> {
-            Hex hex = new Hex();
+            hex = new Hex(11);
             pane.setCenter(PrintBoard(11, pane));
             defaultSize.setDisable(true);
             pane.setLeft(blank);
@@ -119,7 +120,8 @@ public class Main extends Application {
         TextField sizeInput = new TextField();
         Button enteredText = new Button("Enter");
         enteredText.setOnMouseClicked(action -> {
-            Hex hex = new Hex(Integer.parseInt(sizeInput.getText()));
+            hex = new Hex(Integer.parseInt(sizeInput.getText()));
+            System.out.println(Integer.parseInt(sizeInput.getText()));
             pane.setCenter(PrintBoard(Integer.parseInt(sizeInput.getText()), pane));
             enteredText.setDisable(true);
             pane.setLeft(blank);
