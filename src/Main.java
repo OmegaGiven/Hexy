@@ -16,7 +16,7 @@ public class Main extends Application {
         //this will be used to create the initial board
     }
     public void updateBoard(){
-        //this will be used to update an already existent board.
+        //this will be used to update an already existing board.
     }
 
     public void start(Stage stage){
@@ -30,14 +30,15 @@ public class Main extends Application {
         Text request = new Text("Please Enter a Integer size");
 
         Button defaultSize = new Button("Default board size 11");
-        defaultSize.setOnAction(action -> {
+        defaultSize.setOnMouseClicked(action -> {
             int size = 11;
         });
 
         TextField sizeInput = new TextField();
         Button enteredText = new Button("Enter");
-        enteredText.setOnAction(action -> {
+        enteredText.setOnMouseClicked(action -> {
             int size = Integer.parseInt(sizeInput.getText());
+            System.out.println(size);
         });
 
 
