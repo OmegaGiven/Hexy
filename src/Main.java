@@ -21,15 +21,15 @@ public class Main extends Application {
         //this will be used to create the initial board
         int offset = 0;
 
-        Hexagon hexagon = new Hexagon(new Image("https://i.imgur.com/xe4LYx0.png"));
 
 //        Image image = new Image("https://i.imgur.com/xe4LYx0.png");
 
 
         Hex hexy = new Hex();
-
+        Image blank = new Image("https://i.imgur.com/xe4LYx0.png");
         for (int y = 0; y <= size; y++){
             for (int x = 0; x <= size; x++){
+                Hexagon hexagon = new Hexagon(blank);
                 ImageView im = new ImageView(hexagon.image);
                 im.setFitHeight(100);
                 im.setFitWidth(100);
@@ -39,12 +39,15 @@ public class Main extends Application {
                 im.setX(x*30+offset);
 
                 hexagon.index = x * y + x;
+                hexy.addBlank(hexagon);
 
                 im.setOnMouseClicked(event -> {
                     if(redPlayer) {
                         im.setImage(new Image("https://i.imgur.com/62DSuZj.png"));
                         redPlayer = false;
                         im.setDisable(true);
+                        hexagon.setPlayer(1);
+                        hexy.change(hexagon);
                         if(hexy.winner()) {
                             System.out.println("Hello");
                         }
@@ -53,6 +56,8 @@ public class Main extends Application {
                         im.setImage(new Image("https://i.imgur.com/Su3rhhx.png"));
                         redPlayer = true;
                         im.setDisable(true);
+                        hexagon.setPlayer(2);
+                        hexy.change(hexagon);
                         if(hexy.winner()) {
                             System.out.println("Hello");
                         }

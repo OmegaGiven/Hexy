@@ -41,31 +41,38 @@ public class Hex {
 
 
 
+    public void addBlank(Hexagon hex) {
+        graph.add(hex);
+    }
 
-    public void add(Integer index) {
-        if(index < size)
-            if(graph.get(index).getPlayer() == 1) {
+    public void change(Hexagon hex) {
+
+        System.out.println("ADDDD");
+        System.out.println(hex.index + " Hello " + size);
+        if(hex.index < size)
+            System.out.println(graph.get(hex.index).getPlayer());
+            if(graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("up");
-                addUp(graph.get(index));
+                addUp(graph.get(hex.index));
             }
-        else if(index > size * size - size - 1)
-            if(graph.get(index).getPlayer() == 1) {
+        else if(hex.index > size * size - size - 1)
+            if(graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("down");
-                addDown(graph.get(index));
+                addDown(graph.get(hex.index));
             }
-        else if(index % size == 0)
-            if(graph.get(index).getPlayer() == 2) {
+        else if(hex.index % size == 0)
+            if(graph.get(hex.index).getPlayer() == 2) {
                 System.out.println("left");
-                addLeft(graph.get(index));
+                addLeft(graph.get(hex.index));
             }
-        else if(index % size == size - 1)
-            if(graph.get(index).getPlayer() == 2) {
+        else if(hex.index % size == size - 1)
+            if(graph.get(hex.index).getPlayer() == 2) {
                 System.out.println("right");
-                addRight(graph.get(index));
+                addRight(graph.get(hex.index));
             }
         for (int i : neighbors) {
-            if(graph.get(index).getPlayer().equals(graph.get(index + i).getPlayer())) {
-                unionFind.union(index, graph.get(index + i).index);
+            if(graph.get(hex.index).getPlayer() != 0 && graph.get(hex.index).getPlayer().equals(graph.get(hex.index + i).getPlayer())) {
+                unionFind.union(hex, graph.get(hex.index + i));
             }
         }
     }
