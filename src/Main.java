@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -36,6 +37,24 @@ public class Main extends Application {
 
 
         Image blank = new Image("https://i.imgur.com/xe4LYx0.png");
+
+
+        Line topbottom = new Line(10, 15, size*35, 15);
+        topbottom.setStrokeWidth(10);
+        topbottom.setStroke(Color.RED);
+        Line topbottom2 = new Line(10+ 15 * size, size * 30, 10+ 15 * size + size*35, size * 30 );
+        topbottom2.setStrokeWidth(10);
+        topbottom2.setStroke(Color.RED);
+
+
+        Line leftright = new Line(10, 15, 10+ 15 * size , size * 30);
+        leftright.setStrokeWidth(10);
+        leftright.setStroke(Color.BLUE);
+        Line leftright2 = new Line(size*35, 15, 10+ 15 * size + size*35, size * 30 );
+        leftright2.setStrokeWidth(10);
+        leftright2.setStroke(Color.BLUE);
+
+        pane.getChildren().addAll(leftright,leftright2,topbottom,topbottom2);
         for (int y = 0; y < size; y++){
             for (int x = 0; x < size; x++){
                 Hexagon hexagon = new Hexagon(blank);
@@ -88,19 +107,20 @@ public class Main extends Application {
             }
             offset += 15;
         }
+
         return pane;
     }
 
 
     public void start(Stage stage){
         Pane backdrop = new Pane();
-        BackgroundImage backgroundImage = new BackgroundImage(new Image("https://scx1.b-cdn.net/csz/news/800/2015/computermode.png"), BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,
-                BackgroundSize.DEFAULT);
-        Background background = new Background(backgroundImage);
+//        BackgroundImage backgroundImage = new BackgroundImage(new Image("https://scx1.b-cdn.net/csz/news/800/2015/computermode.png"), BackgroundRepeat.NO_REPEAT,
+//                BackgroundRepeat.NO_REPEAT,
+//                BackgroundPosition.DEFAULT,
+//                BackgroundSize.DEFAULT);
+//        Background background = new Background(backgroundImage);
         BorderPane pane = new BorderPane();
-        backdrop.setBackground(background);
+//        backdrop.setBackground(background);
         backdrop.getChildren().add(pane);
         Pane blank = new Pane();
 
@@ -129,7 +149,7 @@ public class Main extends Application {
         
         VBox leftPane = new VBox(request, sizeInput, enteredText, defaultSize);
         pane.setLeft(leftPane);
-
+        stage.setMaximized(true);
         stage.setTitle("Hexy");
         Scene scene = new Scene(backdrop, 500, 500);
         stage.setScene(scene);
