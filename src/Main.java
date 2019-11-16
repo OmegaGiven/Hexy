@@ -90,7 +90,7 @@ public class Main extends Application {
         Text player2turn = new Text("Player 2's turn (blue)");
         player2turn.setFill(Color.BLUE);
 
-        Text request = new Text("Please Enter a Integer size");
+        Text request = new Text("Please enter a integer size");
 
 
         Button defaultSize = new Button("Default board size 11");
@@ -114,9 +114,9 @@ public class Main extends Application {
         pane.setLeft(leftPane);
 
         stage.setTitle("Hexy");
-        Scene scene = new Scene(backdrop);
+        Scene scene = new Scene(backdrop, 500, 500);
         stage.setScene(scene);
-        stage.setMaximized(true);
+        //stage.setMaximized(true);
         stage.show();
     }
     public static void main(String[] args) {
