@@ -1,6 +1,7 @@
 Hex
 -------------------
 Uses JavaFX for Graphics
+
 Uses UnionFind algorithm connecting paths of groups to other node groups.    
 
 Contributors
