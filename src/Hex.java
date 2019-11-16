@@ -54,7 +54,7 @@ public class Hex {
                 System.out.println("up");
                 addUp(graph.get(hex.index));
             }
-        else if(hex.index > size * size - size - 1)
+        else if(hex.index >= size * size - size - 1)
             System.out.println(size * size - size - 1);
             if(graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("down");
@@ -91,12 +91,16 @@ public class Hex {
     public boolean winner() {
         for (Hexagon up : up) {
             for(Hexagon down : down) {
-                if(up.equals(down)) return true;
+                int upper = unionFind.find(up.index);
+                int downer = unionFind.find(down.index);
+                if(upper == downer) return true;
             }
         }
         for (Hexagon left : left) {
             for (Hexagon right : right) {
-                if(right.equals(left)) return true;
+                int righty = unionFind.find(right.index);
+                int lefty = unionFind.find(left.index);
+                if(righty == lefty) return true;
             }
         }
         return false;

@@ -19,15 +19,15 @@ public class UnionFind {
         Integer root2 = find(two.index);
 
         if(list[root1].compareTo(list[root2]) < 0 ) {
-            list[root1] += (root2);
-            one.addValue(root2);
-            list[root2] = (root1);
+            list[root1] += list[root2];
+            one.addValue(list[root2]);
+            list[root2] = root1;
             two.setValue(root1);
         }
         else {
-            list[root2] += (root1);
-            two.addValue(root1);
-            list[root1] = (root2);
+            list[root2] += list[root1];
+            two.addValue(list[root1]);
+            list[root1] = root2;
             one.setValue(root2);
         }
 

@@ -16,6 +16,7 @@ public class Main extends Application {
     // blue:  https://i.imgur.com/Su3rhhx.png
 
     boolean redPlayer = true;
+    int count = 0;
     public Pane PrintBoard(int size){
         Pane pane = new Pane();
         //this will be used to create the initial board
@@ -42,13 +43,14 @@ public class Main extends Application {
                 hexy.addBlank(hexagon);
 
                 im.setOnMouseClicked(event -> {
+                    count++;
                     if(redPlayer) {
                         im.setImage(new Image("https://i.imgur.com/62DSuZj.png"));
                         redPlayer = false;
                         im.setDisable(true);
                         hexagon.setPlayer(1);
                         hexy.change(hexagon);
-                        if(hexy.winner()) {
+                        if(hexy.winner() && count > 20) {
                             System.out.println("Red is winner");
                         }
                     }
@@ -58,7 +60,7 @@ public class Main extends Application {
                         im.setDisable(true);
                         hexagon.setPlayer(2);
                         hexy.change(hexagon);
-                        if(hexy.winner()) {
+                        if(hexy.winner() && count > 20) {
                             System.out.println("Blue is winner");
                         }
 
