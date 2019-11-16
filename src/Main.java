@@ -15,7 +15,7 @@ public class Main extends Application {
     //  red:   https://i.imgur.com/62DSuZj.png
     // blue:  https://i.imgur.com/Su3rhhx.png
 
-    boolean count = true;
+    boolean redPlayer = true;
     public Pane PrintBoard(int size){
         Pane pane = new Pane();
         //this will be used to create the initial board
@@ -30,31 +30,29 @@ public class Main extends Application {
 
         for (int y = 0; y <= size; y++){
             for (int x = 0; x <= size; x++){
-                ImageView hex = new ImageView(hexagon.image);
-                hex.setFitHeight(100);
-                hex.setFitWidth(100);
-                pane.getChildren().add(hex);
-                hex.setRotate(90);
-                hex.setY(y*25);
-                hex.setX(x*30+offset);
+                ImageView im = new ImageView(hexagon.image);
+                im.setFitHeight(100);
+                im.setFitWidth(100);
+                pane.getChildren().add(im);
+                im.setRotate(90);
+                im.setY(y*25);
+                im.setX(x*30+offset);
 
                 hexagon.index = x * y + x;
 
-                hex.setOnMouseClicked(event -> {
-                    if(count) {
-                        hex.setImage(new Image("https://i.imgur.com/62DSuZj.png"));
-                        count = false;
-                        hex.setDisable(true);
-
+                im.setOnMouseClicked(event -> {
+                    if(redPlayer) {
+                        im.setImage(new Image("https://i.imgur.com/62DSuZj.png"));
+                        redPlayer = false;
+                        im.setDisable(true);
                         if(hexy.winner()) {
                             System.out.println("Hello");
                         }
                     }
                     else {
-                        hex.setImage(new Image("https://i.imgur.com/Su3rhhx.png"));
-                        count = true;
-                        hex.setDisable(true);
-
+                        im.setImage(new Image("https://i.imgur.com/Su3rhhx.png"));
+                        redPlayer = true;
+                        im.setDisable(true);
                         if(hexy.winner()) {
                             System.out.println("Hello");
                         }
