@@ -27,8 +27,8 @@ public class Main extends Application {
 
         Hex hexy = new Hex();
         Image blank = new Image("https://i.imgur.com/xe4LYx0.png");
-        for (int y = 0; y <= size; y++){
-            for (int x = 0; x <= size; x++){
+        for (int y = 0; y < size; y++){
+            for (int x = 0; x < size; x++){
                 Hexagon hexagon = new Hexagon(blank);
                 ImageView im = new ImageView(hexagon.image);
                 im.setFitHeight(100);
@@ -38,7 +38,7 @@ public class Main extends Application {
                 im.setY(y*25);
                 im.setX(x*30+offset);
 
-                hexagon.index = x * y + x;
+                hexagon.index = size * y + x;
                 hexy.addBlank(hexagon);
 
                 im.setOnMouseClicked(event -> {

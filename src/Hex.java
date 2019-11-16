@@ -9,7 +9,6 @@ public class Hex {
     private ArrayList<Hexagon> right = new ArrayList<>();
     private UnionFind unionFind = new UnionFind(121);
 
-    int[] neighbors = {-size, -size + 1, -1, 1, size - 1, size};
 
 
 
@@ -47,15 +46,16 @@ public class Hex {
 
     public void change(Hexagon hex) {
 
-        System.out.println("ADDDD");
+//        System.out.println("ADDDD");
         System.out.println(hex.index + " Hello " + size);
         if(hex.index < size)
-            System.out.println(graph.get(hex.index).getPlayer());
+//            System.out.println(graph.get(hex.index).getPlayer());
             if(graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("up");
                 addUp(graph.get(hex.index));
             }
         else if(hex.index > size * size - size - 1)
+            System.out.println(size * size - size - 1);
             if(graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("down");
                 addDown(graph.get(hex.index));
@@ -70,8 +70,13 @@ public class Hex {
                 System.out.println("right");
                 addRight(graph.get(hex.index));
             }
+
+        int[] neighbors = {-size, -size + 1, -1, 1, size - 1, size};
+
         for (int i : neighbors) {
-            if(graph.get(hex.index).getPlayer() != 0 && graph.get(hex.index).getPlayer().equals(graph.get(hex.index + i).getPlayer())) {
+            if(hex.index + i >= 0 && hex.index + i < (size * size) &&
+                    graph.get(hex.index).getPlayer() != 0 &&
+                    graph.get(hex.index).getPlayer().equals(graph.get(hex.index + i).getPlayer())) {
                 unionFind.union(hex, graph.get(hex.index + i));
             }
         }
