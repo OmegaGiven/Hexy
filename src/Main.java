@@ -49,7 +49,7 @@ public class Main extends Application {
                         hexagon.setPlayer(1);
                         hexy.change(hexagon);
                         if(hexy.winner()) {
-                            System.out.println("Hello");
+                            System.out.println("Red is winner");
                         }
                     }
                     else {
@@ -59,7 +59,7 @@ public class Main extends Application {
                         hexagon.setPlayer(2);
                         hexy.change(hexagon);
                         if(hexy.winner()) {
-                            System.out.println("Hello");
+                            System.out.println("Blue is winner");
                         }
 
                     }
