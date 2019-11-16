@@ -20,10 +20,17 @@ public class Main extends Application {
         Pane pane = new Pane();
         //this will be used to create the initial board
         int offset = 0;
-        Image image = new Image("https://i.imgur.com/xe4LYx0.png");
+
+        Hexagon hexagon = new Hexagon(new Image("https://i.imgur.com/xe4LYx0.png"));
+
+//        Image image = new Image("https://i.imgur.com/xe4LYx0.png");
+
+
+        Hex hexy = new Hex();
+
         for (int y = 0; y <= size; y++){
             for (int x = 0; x <= size; x++){
-                ImageView hex = new ImageView(image);
+                ImageView hex = new ImageView(hexagon.image);
                 hex.setFitHeight(100);
                 hex.setFitWidth(100);
                 pane.getChildren().add(hex);
@@ -31,17 +38,26 @@ public class Main extends Application {
                 hex.setY(y*25);
                 hex.setX(x*30+offset);
 
+                hexagon.index = x * y + x;
+
                 hex.setOnMouseClicked(event -> {
                     if(count) {
                         hex.setImage(new Image("https://i.imgur.com/62DSuZj.png"));
                         count = false;
                         hex.setDisable(true);
+
+                        if(hexy.winner()) {
+                            System.out.println("Hello");
+                        }
                     }
                     else {
                         hex.setImage(new Image("https://i.imgur.com/Su3rhhx.png"));
                         count = true;
                         hex.setDisable(true);
 
+                        if(hexy.winner()) {
+                            System.out.println("Hello");
+                        }
 
                     }
                 });

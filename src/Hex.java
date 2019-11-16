@@ -45,18 +45,22 @@ public class Hex {
     public void add(Integer index) {
         if(index < size)
             if(graph.get(index).getPlayer() == 1) {
+                System.out.println("up");
                 addUp(graph.get(index));
             }
         else if(index > size * size - size - 1)
             if(graph.get(index).getPlayer() == 1) {
+                System.out.println("down");
                 addDown(graph.get(index));
             }
         else if(index % size == 0)
             if(graph.get(index).getPlayer() == 2) {
+                System.out.println("left");
                 addLeft(graph.get(index));
             }
         else if(index % size == size - 1)
             if(graph.get(index).getPlayer() == 2) {
+                System.out.println("right");
                 addRight(graph.get(index));
             }
         for (int i : neighbors) {
