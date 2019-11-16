@@ -17,7 +17,7 @@ public class Main extends Application {
     //  white:  https://i.imgur.com/xe4LYx0.png
     //  red:   https://i.imgur.com/62DSuZj.png
     // blue:  https://i.imgur.com/Su3rhhx.png
-    ArrayList hexGrid;
+
     boolean count = true;
     public Pane PrintBoard(int size){
         Pane pane = new Pane();
@@ -53,12 +53,11 @@ public class Main extends Application {
         }
         return pane;
     }
-    public void updateBoard(){
-        //this will be used to update an already existing board.
-    }
+
 
     public void start(Stage stage){
         BorderPane pane = new BorderPane();
+        Pane blank = new Pane();
 
         Text player1turn = new Text("Player 1's turn (red)");
         player1turn.setFill(Color.RED);
@@ -73,6 +72,7 @@ public class Main extends Application {
             Hex hex = new Hex();
             pane.setCenter(PrintBoard(11));
             defaultSize.setDisable(true);
+            pane.setLeft(blank);
         });
 
         TextField sizeInput = new TextField();
@@ -81,13 +81,11 @@ public class Main extends Application {
             Hex hex = new Hex(Integer.parseInt(sizeInput.getText()));
             pane.setCenter(PrintBoard(Integer.parseInt(sizeInput.getText())));
             enteredText.setDisable(true);
+            pane.setLeft(blank);
         });
         
-        VBox leftPane = new VBox(sizeInput, enteredText, defaultSize);
+        VBox leftPane = new VBox(request, sizeInput, enteredText, defaultSize);
         pane.setLeft(leftPane);
-
-
-
 
         stage.setTitle("Hexy");
         Scene scene = new Scene(pane);
