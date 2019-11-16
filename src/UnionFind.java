@@ -5,34 +5,34 @@
  */
 
 public class UnionFind {
-    private Integer[] list;
+    private Hexagon[] list;
 
-    UnionFind(Integer[] list) {
-        this.list = list;
+    UnionFind(int size) {
+        list = new Hexagon[size];
     }
 
     public void union(Integer one, Integer two) {
         Integer root1 = find(one);
         Integer root2 = find(two);
 
-        if(list[root1] < list[root2]) {
-            list[root1] += list[root2];
-            list[root2] = root1;
+        if(list[root1].compareTo(list[root2]) < 0 ) {
+            list[root1].addValue(root2);
+            list[root2].setValue(root1);
         }
         else {
-            list[root2] += list[root1];
-            list[root1] = root2;
+            list[root2].addValue(root1);
+            list[root1].setValue(root2);
         }
 
     }
 
     public Integer find(Integer toFind) {
-        if(list[toFind] < 0) {
+        if(list[toFind].getValue() < 0) {
             return toFind;
         }
         else {
-            Integer root = find(list[toFind]);
-            list[toFind] = root;
+            Integer root = find(list[toFind].getValue());
+            list[toFind].setValue(root);
             return root;
         }
     }
