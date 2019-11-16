@@ -24,7 +24,7 @@ public class UnionFind {
             list[root2] = root1;
             two.setValue(root1);
         }
-        else {
+        else if (list[root2].compareTo(list[root1]) < 0 ){
             list[root2] += list[root1];
             two.addValue(list[root1]);
             list[root1] = root2;
@@ -39,7 +39,7 @@ public class UnionFind {
         }
         else {
             Integer root = find(list[toFind]);
-            list[toFind] = (root);
+            list[toFind] = root;
             return root;
         }
     }

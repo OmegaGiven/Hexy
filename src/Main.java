@@ -50,7 +50,7 @@ public class Main extends Application {
                         im.setDisable(true);
                         hexagon.setPlayer(1);
                         hexy.change(hexagon);
-                        if(hexy.winner() && count > 20) {
+                        if(count > 19 && hexy.winner()) {
                             System.out.println("Red is winner");
                         }
                     }
@@ -60,7 +60,7 @@ public class Main extends Application {
                         im.setDisable(true);
                         hexagon.setPlayer(2);
                         hexy.change(hexagon);
-                        if(hexy.winner() && count > 20) {
+                        if(count > 19 && hexy.winner()) {
                             System.out.println("Blue is winner");
                         }
 

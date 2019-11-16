@@ -47,30 +47,32 @@ public class Hex {
     public void change(Hexagon hex) {
 
 //        System.out.println("ADDDD");
-        System.out.println(hex.index + " Hello " + size);
-        if(hex.index < size)
+//        System.out.println(hex.index + " Hello " + size);
+        if(hex.index < size) {
 //            System.out.println(graph.get(hex.index).getPlayer());
-            if(graph.get(hex.index).getPlayer() == 1) {
+            if (graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("up");
                 addUp(graph.get(hex.index));
             }
-        else if(hex.index >= size * size - size - 1)
-            System.out.println(size * size - size - 1);
-            if(graph.get(hex.index).getPlayer() == 1) {
+        }
+        else if(hex.index >= size * size - size - 1) {
+            if (graph.get(hex.index).getPlayer() == 1) {
                 System.out.println("down");
                 addDown(graph.get(hex.index));
             }
-        else if(hex.index % size == 0)
-            if(graph.get(hex.index).getPlayer() == 2) {
+        }
+        else if(hex.index % size == 0) {
+            if (graph.get(hex.index).getPlayer() == 2) {
                 System.out.println("left");
                 addLeft(graph.get(hex.index));
             }
-        else if(hex.index % size == size - 1)
-            if(graph.get(hex.index).getPlayer() == 2) {
+        }
+        else if(hex.index % size == size - 1) {
+            if (graph.get(hex.index).getPlayer() == 2) {
                 System.out.println("right");
                 addRight(graph.get(hex.index));
             }
-
+        }
         int[] neighbors = {-size, -size + 1, -1, 1, size - 1, size};
 
         for (int i : neighbors) {
