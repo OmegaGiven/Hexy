@@ -1,19 +1,41 @@
 import javafx.application.Application;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class Main extends Application {
+    //  white:  https://i.imgur.com/xe4LYx0.png
+    //  red:   https://i.imgur.com/62DSuZj.png
+    // blue:  https://i.imgur.com/Su3rhhx.png
+    ArrayList hexGrid;
 
-
-    public void PrintBoard(){
+    public Pane PrintBoard(int size){
+        Pane pane = new Pane();
         //this will be used to create the initial board
+        int offset = 0;
+        for (int y = 0; y <= size; y++){
+            for (int x = 0; x <= size; x++){
+                ImageView hex = new ImageView("https://i.imgur.com/xe4LYx0.png");
+                hex.setFitHeight(100);
+                hex.setFitWidth(100);
+                pane.getChildren().add(hex);
+                hex.setRotate(90);
+                hex.setY(y*30);
+                hex.setX(x*30+offset);
+
+            }
+            offset += 50;
+        }
+        return pane;
     }
     public void updateBoard(){
         //this will be used to update an already existing board.
@@ -45,6 +67,10 @@ public class Main extends Application {
         
         VBox leftPane = new VBox(sizeInput, enteredText, defaultSize);
         pane.setLeft(leftPane);
+
+        pane.setCenter(PrintBoard(hex.size));
+
+
 
         stage.setTitle("Hexy");
         Scene scene = new Scene(pane);
