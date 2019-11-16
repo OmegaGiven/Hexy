@@ -1,5 +1,8 @@
 import javafx.application.Application;
+import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -23,6 +26,22 @@ public class Main extends Application {
         Text player2turn = new Text("Player 2's turn (blue)");
         player2turn.setFill(Color.BLUE);
 
+        Text request = new Text("Please Enter a Integer size");
+
+        Button defaultSize = new Button("Default board size 11");
+        defaultSize.setOnAction(action -> {
+            int size = 11;
+        });
+
+        TextField sizeInput = new TextField();
+        Button enteredText = new Button("Enter");
+        enteredText.setOnAction(action -> {
+            int size = Integer.parseInt(sizeInput.getText());
+        });
+
+
+        Group leftpane = new Group(sizeInput, enteredText, defaultSize);
+        pane.setLeft(leftpane);
 
 
 
@@ -30,16 +49,7 @@ public class Main extends Application {
 
 
 
-
-
-
-
-
-
-
-
-
-
+        stage.setTitle("Hexy");
         Scene scene = new Scene(pane);
         stage.setScene(scene);
         stage.setMaximized(true);
