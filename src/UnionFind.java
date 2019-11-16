@@ -5,7 +5,7 @@
  */
 
 public class UnionFind {
-    Integer[] list;
+    private Integer[] list;
 
     UnionFind(Integer[] list) {
         this.list = list;
