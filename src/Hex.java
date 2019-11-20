@@ -94,6 +94,15 @@ public class Hex {
                 hex.index + i < graph.size() &&
                 graph.get(hex.index).getPlayer() != 0 &&
                 graph.get(hex.index).getPlayer().equals(graph.get(hex.index + i).getPlayer())) {
+
+                // checks the border cases. Makes sure that those on the borders don't get added together.
+                if(hex.index % size == 0 && (hex.index + i) % size == 10) {
+                    continue;
+                }
+                if(hex.index % size == 10 && (hex.index + i) % size == 0) {
+                    continue;
+                }
+
                     unionFind.union(hex, graph.get(hex.index + i));
             }
         }
